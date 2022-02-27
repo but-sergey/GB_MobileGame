@@ -7,6 +7,7 @@ internal class EntryPoint : MonoBehaviour
     private const GameState InitialState = GameState.Start;
 
     [SerializeField] private Transform _placeForUi;
+    [SerializeField] private Vehicle _vehicle;
 
     private MainController _mainController;
 
@@ -14,7 +15,7 @@ internal class EntryPoint : MonoBehaviour
     private void Awake()
     {
         var profilePlayer = new ProfilePlayer(SpeedCar, InitialState);
-        _mainController = new MainController(_placeForUi, profilePlayer);
+        _mainController = new MainController(_placeForUi, _vehicle, profilePlayer);
     }
 
     private void OnDestroy()

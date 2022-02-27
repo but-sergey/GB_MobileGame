@@ -6,6 +6,7 @@ using UnityEngine;
 internal class MainController : BaseController
 {
     private readonly Transform _placeForUi;
+    private readonly Vehicle _vehicle;
     private readonly ProfilePlayer _profilePlayer;
 
     private MainMenuController _mainMenuController;
@@ -13,9 +14,10 @@ internal class MainController : BaseController
     private GameController _gameController;
 
 
-    public MainController(Transform placeForUi, ProfilePlayer profilePlayer)
+    public MainController(Transform placeForUi, Vehicle vehicle, ProfilePlayer profilePlayer)
     {
         _placeForUi = placeForUi;
+        _vehicle = vehicle;
         _profilePlayer = profilePlayer;
 
         profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
@@ -44,7 +46,7 @@ internal class MainController : BaseController
             case GameState.Game:
                 _mainMenuController?.Dispose();
                 _settingsController?.Dispose();
-                _gameController = new GameController(_profilePlayer);
+                _gameController = new GameController(_profilePlayer, _vehicle);
                 break;
             case GameState.Settings:
                 _mainMenuController?.Dispose();
