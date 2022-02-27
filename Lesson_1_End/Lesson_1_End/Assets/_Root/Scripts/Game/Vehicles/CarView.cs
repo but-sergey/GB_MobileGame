@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Car
+namespace Game.Vehicles
 {
     internal class CarView : MonoBehaviour
     {
